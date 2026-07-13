@@ -12,6 +12,8 @@ public class ItemViewHolder extends RecyclerView.ViewHolder {
     private final TextView name;
     private final TextView instructor;
     private final TextView classTime;
+    private final TextView courseMeta;
+    private final TextView examTime;
     private final CardView cardView;
 
     public TextView getName() {
@@ -26,6 +28,14 @@ public class ItemViewHolder extends RecyclerView.ViewHolder {
         return classTime;
     }
 
+    public TextView getCourseMeta() {
+        return courseMeta;
+    }
+
+    public TextView getExamTime() {
+        return examTime;
+    }
+
     public CardView getCardView() {
         return cardView;
     }
@@ -35,6 +45,8 @@ public class ItemViewHolder extends RecyclerView.ViewHolder {
         name = (TextView) itemView.findViewById(R.id.name);
         instructor = (TextView) itemView.findViewById(R.id.instructor);
         classTime = (TextView) itemView.findViewById(R.id.class_time);
+        courseMeta = (TextView) itemView.findViewById(R.id.course_meta);
+        examTime = (TextView) itemView.findViewById(R.id.exam_time);
         this.cardView = itemView.findViewById(R.id.card_view);
     }
 }

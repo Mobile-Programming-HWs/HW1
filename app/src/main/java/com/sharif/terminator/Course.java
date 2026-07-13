@@ -122,6 +122,32 @@ public class Course {
         return getClassTimeBeginningText() + " to " + getClassTimeEndingText();
     }
 
+    public String getClassDaysText() {
+        if (!hasClassTime()) {
+            return "Unknown day";
+        }
+        if (hasSecondClassTime()) {
+            return dayName(classFirstDate) + ", " + dayName(classSecondDate);
+        }
+        return dayName(classFirstDate);
+    }
+
+    public String getSummaryText() {
+        String capacityText = capacity > 0 ? "Capacity " + capacity : "Capacity not set";
+        return course_number + " | " + units + " units | " + capacityText;
+    }
+
+    public String getScheduleSummaryText() {
+        return getClassDaysText() + " | " + getClassTimeRangeText();
+    }
+
+    public String getExamTimeText() {
+        if (exam_time == null || exam_time.trim().isEmpty()) {
+            return "No exam time";
+        }
+        return exam_time.trim();
+    }
+
     public int getClassFirstDate() {
         return classFirstDate;
     }
@@ -160,6 +186,19 @@ public class Course {
             minute = 0;
         }
         return String.format(Locale.US, "%02d:%02d", hour, minute);
+    }
+
+    private static String dayName(int day) {
+        switch (day) {
+            case 0: return "Saturday";
+            case 1: return "Sunday";
+            case 2: return "Monday";
+            case 3: return "Tuesday";
+            case 4: return "Wednesday";
+            case 5: return "Thursday";
+            case 6: return "Friday";
+            default: return "Unknown day";
+        }
     }
     
     public static Course getClone(Course course) {

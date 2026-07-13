@@ -38,7 +38,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         itemViewHolder.getName().setText(course.getName());
         itemViewHolder.getInstructor().setText(course.getInstructor());
-        itemViewHolder.getClassTime().setText(course.getClassTimeRangeText());
+        itemViewHolder.getCourseMeta().setText(course.getSummaryText());
+        itemViewHolder.getClassTime().setText(course.getScheduleSummaryText());
+        itemViewHolder.getExamTime().setText("Exam: " + course.getExamTimeText());
         itemViewHolder.getCardView().setOnClickListener(view -> listener.onItemClicked(course));
     }
 

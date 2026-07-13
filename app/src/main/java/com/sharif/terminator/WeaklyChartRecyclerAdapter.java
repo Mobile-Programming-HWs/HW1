@@ -49,6 +49,7 @@ public class WeaklyChartRecyclerAdapter extends RecyclerView.Adapter<WeaklyChart
         holder.weaklyChartInstructor.setText(course.getInstructor());
         holder.weaklyChartHour.setText(course.getClassTimeRangeText());
         holder.weaklyChartDate.setText(dateCalculator(course.getClassDate()));
+        holder.weaklyChartMeta.setText(course.getSummaryText());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,7 +84,7 @@ public class WeaklyChartRecyclerAdapter extends RecyclerView.Adapter<WeaklyChart
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private MaterialCardView cardView;
-        private TextView weaklyChartDate, weaklyChartName, weaklyChartInstructor, weaklyChartHour;
+        private TextView weaklyChartDate, weaklyChartName, weaklyChartInstructor, weaklyChartHour, weaklyChartMeta;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -92,6 +93,7 @@ public class WeaklyChartRecyclerAdapter extends RecyclerView.Adapter<WeaklyChart
             weaklyChartName = itemView.findViewById(R.id.weakly_chart_name);
             weaklyChartInstructor = itemView.findViewById(R.id.weakly_chart_instructor);
             weaklyChartHour = itemView.findViewById(R.id.weakly_chart_hour);
+            weaklyChartMeta = itemView.findViewById(R.id.weakly_chart_meta);
         }
     }
 }
