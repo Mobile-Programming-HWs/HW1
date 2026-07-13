@@ -29,6 +29,10 @@ public class Department {
         return departmentNames;
     }
 
+    public static void clearDepartmentNames() {
+        departmentNames.clear();
+    }
+
     public Department(int file_name, String department_name) {
         this.file_name = file_name;
         this.department_name = department_name;

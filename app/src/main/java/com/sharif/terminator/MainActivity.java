@@ -80,6 +80,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void initializeDepartments() {
+        departments.clear();
+        Department.clearDepartmentNames();
         departments.add(new Department(R.raw.d3, "دانشکده ریاضی"));
         departments.add(new Department(R.raw.d5, "دانشکده فیزیک"));
         departments.add(new Department(R.raw.d38, "دانشکده کامپیوتر"));
