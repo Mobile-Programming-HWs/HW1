@@ -8,7 +8,7 @@ Android app for browsing Sharif course data and building a weekly class plan.
 - Groups courses by department.
 - Shows each course in a RecyclerView list.
 - Lets the user add courses to a selected weekly chart.
-- Rejects duplicate course numbers and time conflicts.
+- Rejects duplicate course numbers, class conflicts, and exam conflicts.
 
 ## Setup
 

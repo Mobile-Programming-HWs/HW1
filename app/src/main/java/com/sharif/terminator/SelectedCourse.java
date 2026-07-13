@@ -20,6 +20,9 @@ public class SelectedCourse {
         if (hasCourse(course.getCourse_number())) {
             return false;
         }
+        if (hasExamConflict(course)) {
+            return false;
+        }
         if (!firstCourse.hasClassTime()) {
             selectedCourses.add(firstCourse);
             sortArray();
@@ -41,6 +44,19 @@ public class SelectedCourse {
     private static boolean hasCourse(String courseNumber) {
         for (Course selectedCourse : selectedCourses) {
             if (selectedCourse.getCourse_number().equals(courseNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean hasExamConflict(Course course) {
+        String examTime = course.getExam_time().trim();
+        if (examTime.isEmpty()) {
+            return false;
+        }
+        for (Course selectedCourse : selectedCourses) {
+            if (examTime.equals(selectedCourse.getExam_time().trim())) {
                 return true;
             }
         }
