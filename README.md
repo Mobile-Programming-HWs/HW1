@@ -7,8 +7,10 @@ Android app for browsing Sharif course data and building a weekly class plan.
 - Loads bundled course data from JSON files in `app/src/main/res/raw`.
 - Groups courses by department.
 - Shows each course in a RecyclerView list.
+- Filters courses by name, instructor, course number, or course id.
 - Lets the user add courses to a selected weekly chart.
 - Rejects duplicate course numbers, class conflicts, and exam conflicts.
+- Saves selected courses locally so they are restored after the app restarts.
 
 ## Setup
 
@@ -46,6 +48,7 @@ adb devices
 - Course list UI: `CourseListFragment`
 - Weekly chart UI: `WeaklyChartFragment`
 - Selected course state: `SelectedCourse`
+- Selected course persistence: `SelectedCourseStorage` with SharedPreferences
 - Course time parsing: `Course`, including one-meeting and two-meeting classes
 
-The app is local-only. It does not call a server or store data outside memory.
+The app is local-only. It does not call a server and stores selected course ids in local SharedPreferences.

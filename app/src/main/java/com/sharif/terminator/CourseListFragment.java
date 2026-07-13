@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +26,7 @@ public class CourseListFragment extends Fragment implements SelectListener {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private LinearLayoutCompat layoutCompat;
+    private String searchQuery = "";
 
     @Nullable
     @Override
@@ -35,13 +37,35 @@ public class CourseListFragment extends Fragment implements SelectListener {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         updateAdapter();
+        setupSearchView();
         setupSpinner();
         return layoutCompat;
     }
 
     private void updateAdapter() {
-        adapter = new RecyclerAdapter(getContext(), MainActivity.departments.get(chosenDepartment).getCourses(), this);
+        ArrayList<Course> courses = MainActivity.departments.get(chosenDepartment).getCourses();
+        adapter = new RecyclerAdapter(getContext(), CourseSearch.filter(courses, searchQuery), this);
         recyclerView.setAdapter(adapter);
+    }
+
+    private void setupSearchView() {
+        SearchView searchView = layoutCompat.findViewById(R.id.course_search);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchQuery = query == null ? "" : query;
+                updateAdapter();
+                searchView.clearFocus();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchQuery = newText == null ? "" : newText;
+                updateAdapter();
+                return true;
+            }
+        });
     }
 
     private void setupSpinner() {
@@ -77,11 +101,11 @@ public class CourseListFragment extends Fragment implements SelectListener {
                 .setTitle(course.getName())
                 .setMessage(message)
                 .setPositiveButton("اضافه کن", (dialogInterface, i) -> {
-                   if (SelectedCourse.addSelectedCourse(course)) {
-                       Toast.makeText(getContext(), "درس موردنظر با موفقیت اضافه شد", Toast.LENGTH_SHORT).show();
-                   } else {
-                       Toast.makeText(getContext(), "درس موردنظر با دروس برنامه در تداخل است", Toast.LENGTH_SHORT).show();
-                   }
+                    SelectedCourse.AddCourseStatus status = SelectedCourse.addSelectedCourseWithStatus(course);
+                    if (status.isAdded()) {
+                        SelectedCourseStorage.save(getContext());
+                    }
+                    Toast.makeText(getContext(), status.getMessage(), Toast.LENGTH_SHORT).show();
                 })
                 .setNegativeButton("لغو", null)
                 .show();

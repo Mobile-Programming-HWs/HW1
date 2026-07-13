@@ -63,6 +63,7 @@ public class WeaklyChartRecyclerAdapter extends RecyclerView.Adapter<WeaklyChart
                         .setMessage(message)
                         .setNegativeButton("حذف", (dialogInterface, i) -> {
                             SelectedCourse.removeById(course.getId());
+                            SelectedCourseStorage.save(view.getContext());
                             refreshSelectedCourses();
                         })
                         .show();

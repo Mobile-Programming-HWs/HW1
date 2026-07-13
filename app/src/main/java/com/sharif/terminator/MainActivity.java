@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         addItemsFromJSON();
 
         super.onCreate(savedInstanceState);
+        SelectedCourseStorage.restore(this, departments);
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.toolbar);

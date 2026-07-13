@@ -35,6 +35,7 @@ public class SelectedCourseTest {
         Course duplicateCourse = course("40101", "[{\"day\":2,\"start\":10.0,\"end\":11.0}]", "");
 
         assertTrue(SelectedCourse.addSelectedCourse(firstCourse));
+        assertEquals(SelectedCourse.AddCourseStatus.DUPLICATE_COURSE, SelectedCourse.addSelectedCourseWithStatus(duplicateCourse));
         assertFalse(SelectedCourse.addSelectedCourse(duplicateCourse));
 
         assertEquals(1, SelectedCourse.getSelectedCourses().size());
@@ -46,6 +47,7 @@ public class SelectedCourseTest {
         Course conflictingExamCourse = course("40102", "[{\"day\":2,\"start\":10.0,\"end\":11.0}]", " 1403-10-01 08:00 ");
 
         assertTrue(SelectedCourse.addSelectedCourse(firstCourse));
+        assertEquals(SelectedCourse.AddCourseStatus.EXAM_CONFLICT, SelectedCourse.addSelectedCourseWithStatus(conflictingExamCourse));
         assertFalse(SelectedCourse.addSelectedCourse(conflictingExamCourse));
 
         assertEquals(1, SelectedCourse.getSelectedCourses().size());
@@ -57,6 +59,7 @@ public class SelectedCourseTest {
         Course overlappingCourse = course("40102", "[{\"day\":1,\"start\":10.0,\"end\":11.0}]", "");
 
         assertTrue(SelectedCourse.addSelectedCourse(firstCourse));
+        assertEquals(SelectedCourse.AddCourseStatus.CLASS_TIME_CONFLICT, SelectedCourse.addSelectedCourseWithStatus(overlappingCourse));
         assertFalse(SelectedCourse.addSelectedCourse(overlappingCourse));
 
         assertEquals(1, SelectedCourse.getSelectedCourses().size());
