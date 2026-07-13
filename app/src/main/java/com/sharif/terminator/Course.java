@@ -1,7 +1,8 @@
 package com.sharif.terminator;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Course {
     private final String info;
@@ -33,19 +34,27 @@ public class Course {
         this.exam_time = exam_time;
         this.datePriority = 1;
 
-        Pattern pattern = Pattern.compile("\\[\\{\"start\": ([0-9.]+), \"end\": ([0-9.]+), \"day\": ([0-9])\\}, \\{\"start\": [0-9.]+, \"end\": [0-9.]+, \"day\": ([0-9])\\}\\]");
-        Matcher matcher = pattern.matcher(class_times);
-        if (matcher.find()) {
-            this.classTimeBeginning = Float.parseFloat(matcher.group(1));
-            this.classTimeEnding =Float.parseFloat(matcher.group(2));
-            this.classFirstDate = Integer.parseInt(matcher.group(3));
-            this.classSecondDate = Integer.parseInt(matcher.group(4));
-        } else {
-            this.classTimeBeginning = -1;
-            this.classTimeEnding = -1;
-            this.classFirstDate = -1;
-            this.classSecondDate = -1;
+        float start = -1;
+        float end = -1;
+        int firstDate = -1;
+        int secondDate = -1;
+        try {
+            JSONArray classTimes = new JSONArray(class_times);
+            if (classTimes.length() > 0) {
+                JSONObject firstMeeting = classTimes.getJSONObject(0);
+                start = (float) firstMeeting.getDouble("start");
+                end = (float) firstMeeting.getDouble("end");
+                firstDate = firstMeeting.getInt("day");
+            }
+            if (classTimes.length() > 1) {
+                secondDate = classTimes.getJSONObject(1).getInt("day");
+            }
+        } catch (JSONException ignored) {
         }
+        this.classTimeBeginning = start;
+        this.classTimeEnding = end;
+        this.classFirstDate = firstDate;
+        this.classSecondDate = secondDate;
     }
 
     public String getInfo() {
@@ -102,6 +111,14 @@ public class Course {
 
     public int getClassSecondDate() {
         return classSecondDate;
+    }
+
+    public boolean hasClassTime() {
+        return classFirstDate != -1;
+    }
+
+    public boolean hasSecondClassTime() {
+        return classSecondDate != -1;
     }
 
     public void setDatePriority(int datePriority) {

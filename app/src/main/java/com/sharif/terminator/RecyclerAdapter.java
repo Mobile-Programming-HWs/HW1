@@ -38,7 +38,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
         itemViewHolder.getName().setText(course.getName());
         itemViewHolder.getInstructor().setText(course.getInstructor());
-        itemViewHolder.getCardView().setOnClickListener(view -> listener.onItemClicked(courses.get(holder.getAdapterPosition())));
+        itemViewHolder.getCardView().setOnClickListener(view -> listener.onItemClicked(course));
     }
 
     @Override

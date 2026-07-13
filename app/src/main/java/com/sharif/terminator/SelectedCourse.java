@@ -17,28 +17,30 @@ public class SelectedCourse {
         firstCourse.setDatePriority(1);
         secondCourse.setDatePriority(2);
 
-        if (hasCourse(course.getId())) {
+        if (hasCourse(course.getCourse_number())) {
             return false;
         }
-        if (firstCourse.getClassDate() == -1) {
+        if (!firstCourse.hasClassTime()) {
             selectedCourses.add(firstCourse);
             sortArray();
             return true;
         }
 
-        if (hasTimeConflict(firstCourse) || hasTimeConflict(secondCourse)) {
+        if (hasTimeConflict(firstCourse) || (secondCourse.hasSecondClassTime() && hasTimeConflict(secondCourse))) {
             return false;
         }
 
         selectedCourses.add(firstCourse);
-        selectedCourses.add(secondCourse);
+        if (secondCourse.hasSecondClassTime()) {
+            selectedCourses.add(secondCourse);
+        }
         sortArray();
         return true;
     }
 
-    private static boolean hasCourse(int id) {
+    private static boolean hasCourse(String courseNumber) {
         for (Course selectedCourse : selectedCourses) {
-            if (selectedCourse.getId() == id) {
+            if (selectedCourse.getCourse_number().equals(courseNumber)) {
                 return true;
             }
         }
@@ -61,11 +63,15 @@ public class SelectedCourse {
 
     public static Comparator<Course> comparator = new Comparator<Course>() {
         public int compare(Course s1, Course s2) {
-
-            int rollno1 = s1.getClassDate() * 100 + Math.round(s1.getClassTimeBeginning());
-            int rollno2 = s2.getClassDate() * 100 + Math.round(s2.getClassTimeBeginning());
-
-            return rollno1 - rollno2;
+            int dateCompare = Integer.compare(s1.getClassDate(), s2.getClassDate());
+            if (dateCompare != 0) {
+                return dateCompare;
+            }
+            int startCompare = Float.compare(s1.getClassTimeBeginning(), s2.getClassTimeBeginning());
+            if (startCompare != 0) {
+                return startCompare;
+            }
+            return Float.compare(s1.getClassTimeEnding(), s2.getClassTimeEnding());
         }
     };
 
