@@ -12,8 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-
 public class WeaklyChartFragment extends Fragment {
 
     private RelativeLayout weaklyLayout;
@@ -25,11 +23,8 @@ public class WeaklyChartFragment extends Fragment {
         weaklyLayout = (RelativeLayout) inflater.inflate(R.layout.fragment_weakly_chart, container, false);
         weaklyChartView = weaklyLayout.findViewById(R.id.weakly_chart_view);
 
-        ArrayList<Course> selectedCourseTimes = new ArrayList<>();
-        selectedCourseTimes = SelectedCourse.getSelectedCourses();
-
         WeaklyChartRecyclerAdapter adapter = new WeaklyChartRecyclerAdapter();
-        adapter.setSelectedCoursesTimes(selectedCourseTimes);
+        adapter.refreshSelectedCourses();
 
         weaklyChartView.setAdapter(adapter);
         weaklyChartView.setLayoutManager(new LinearLayoutManager(getContext()));

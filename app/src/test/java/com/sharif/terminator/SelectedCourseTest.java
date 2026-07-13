@@ -12,7 +12,7 @@ import static org.junit.Assert.assertTrue;
 public class SelectedCourseTest {
     @Before
     public void clearSelectedCourses() {
-        SelectedCourse.getSelectedCourses().clear();
+        SelectedCourse.clearSelectedCourses();
     }
 
     @Test
@@ -85,6 +85,16 @@ public class SelectedCourseTest {
         ArrayList<Course> selectedCourses = SelectedCourse.getSelectedCourses();
         assertEquals(1, selectedCourses.size());
         assertEquals(-1, selectedCourses.get(0).getClassDate());
+    }
+
+    @Test
+    public void removeById_removesAllMeetingsForCourse() {
+        Course course = course("40101", "[{\"day\":3,\"start\":10.0,\"end\":11.5},{\"day\":1,\"start\":10.0,\"end\":11.5}]", "");
+
+        assertTrue(SelectedCourse.addSelectedCourse(course));
+        SelectedCourse.removeById(Integer.parseInt("40101"));
+
+        assertEquals(0, SelectedCourse.getSelectedCourses().size());
     }
 
     private static Course course(String courseNumber, String classTimes, String examTime) {

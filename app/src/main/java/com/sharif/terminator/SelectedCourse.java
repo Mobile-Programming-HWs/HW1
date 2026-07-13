@@ -8,7 +8,11 @@ public class SelectedCourse {
     private static ArrayList<Course> selectedCourses = new ArrayList<>();
 
     public static ArrayList<Course> getSelectedCourses() {
-        return selectedCourses;
+        return new ArrayList<>(selectedCourses);
+    }
+
+    public static void clearSelectedCourses() {
+        selectedCourses.clear();
     }
 
     public static boolean addSelectedCourse(Course course) {
@@ -39,6 +43,15 @@ public class SelectedCourse {
         }
         sortArray();
         return true;
+    }
+
+    public static void removeById(int id) {
+        for (int i = selectedCourses.size() - 1; i >= 0; i--) {
+            if (selectedCourses.get(i).getId() == id) {
+                selectedCourses.remove(i);
+            }
+        }
+        sortArray();
     }
 
     private static boolean hasCourse(String courseNumber) {

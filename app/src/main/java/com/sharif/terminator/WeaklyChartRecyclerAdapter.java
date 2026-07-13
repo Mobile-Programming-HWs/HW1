@@ -62,12 +62,8 @@ public class WeaklyChartRecyclerAdapter extends RecyclerView.Adapter<WeaklyChart
                         .setTitle(course.getName())
                         .setMessage(message)
                         .setNegativeButton("حذف", (dialogInterface, i) -> {
-                            for (int j = selectedCoursesTimes.size() - 1; j >= 0; j--) {
-                                if (course.getId() == selectedCoursesTimes.get(j).getId()) {
-                                    selectedCoursesTimes.remove(j);
-                                }
-                            }
-                            notifyDataSetChanged();
+                            SelectedCourse.removeById(course.getId());
+                            refreshSelectedCourses();
                         })
                         .show();
             }
@@ -79,8 +75,8 @@ public class WeaklyChartRecyclerAdapter extends RecyclerView.Adapter<WeaklyChart
         return selectedCoursesTimes.size();
     }
 
-    public void setSelectedCoursesTimes(ArrayList<Course> selectedCoursesTimes) {
-        this.selectedCoursesTimes = selectedCoursesTimes;
+    public void refreshSelectedCourses() {
+        this.selectedCoursesTimes = SelectedCourse.getSelectedCourses();
         notifyDataSetChanged();
     }
 
