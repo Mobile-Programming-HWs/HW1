@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/screen_background"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -11,13 +12,17 @@
         android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="32dp"
+        android:minHeight="48dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         android:textAlignment="center"/>
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/course_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         app:iconifiedByDefault="false"
         app:queryHint="@string/course_search_hint" />
 
@@ -26,6 +31,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingTop="4dp"
+        android:paddingBottom="10dp"
         android:scrollbars="vertical"
         tools:listitem="@layout/list_item" />
 

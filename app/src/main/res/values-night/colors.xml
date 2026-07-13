@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand_primary">#2F7B6A</color>
+    <color name="brand_primary_dark">#122E29</color>
+    <color name="brand_accent">#E1A04A</color>
+    <color name="screen_background">#141C19</color>
+    <color name="course_card_surface">#1D2925</color>
+    <color name="course_card_stroke">#355148</color>
+    <color name="course_text_primary">#EEF6F2</color>
+    <color name="course_text_secondary">#B8C9C2</color>
+</resources>

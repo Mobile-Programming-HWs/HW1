@@ -91,23 +91,24 @@ public class CourseListFragment extends Fragment implements SelectListener {
 
     @Override
     public void onItemClicked(Course course) {
-        String message = String.format("%s" + '\n' +
-                        "واحد: " + "%d" + '\n' +
-                        "ظرفیت: " + "%d" + '\n' +
-                        "زمان برگزاری: " + "%s" + '\n' +
-                        "زمان امتحان: " + "%s",
-                course.getInfo(), course.getUnits(), course.getCapacity(), course.getClassTimeRangeText(), course.getExam_time());
+        String capacityText = course.getCapacity() > 0 ? String.valueOf(course.getCapacity()) : "Not set";
+        String message = course.getInfo() + '\n' +
+                "Course number: " + course.getCourse_number() + '\n' +
+                "Units: " + course.getUnits() + '\n' +
+                "Capacity: " + capacityText + '\n' +
+                "Class time: " + course.getScheduleSummaryText() + '\n' +
+                "Exam time: " + course.getExamTimeText();
         new AlertDialog.Builder(getContext(), R.style.AlertDialogCustom)
                 .setTitle(course.getName())
                 .setMessage(message)
-                .setPositiveButton("اضافه کن", (dialogInterface, i) -> {
+                .setPositiveButton("Add course", (dialogInterface, i) -> {
                     SelectedCourse.AddCourseStatus status = SelectedCourse.addSelectedCourseWithStatus(course);
                     if (status.isAdded()) {
                         SelectedCourseStorage.save(getContext());
                     }
                     Toast.makeText(getContext(), status.getMessage(), Toast.LENGTH_SHORT).show();
                 })
-                .setNegativeButton("لغو", null)
+                .setNegativeButton("Cancel", null)
                 .show();
     }
 }

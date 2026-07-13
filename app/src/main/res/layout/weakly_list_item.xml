@@ -8,9 +8,10 @@
     android:layout_marginTop="6dp"
     android:layout_marginEnd="10dp"
     android:layout_marginBottom="6dp"
+    app:cardBackgroundColor="@color/course_card_surface"
     app:cardCornerRadius="8dp"
     app:cardElevation="3dp"
-    app:strokeColor="@color/lightgray"
+    app:strokeColor="@color/course_card_stroke"
     app:strokeWidth="1dp">
 
     <LinearLayout
@@ -35,6 +36,8 @@
                 android:maxLines="2"
                 android:text="Day"
                 android:textAlignment="center"
+                android:textColor="@color/brand_primary_dark"
+                android:textDirection="anyRtl"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -46,6 +49,7 @@
                 android:maxLines="2"
                 android:text="11:00 to 12:30"
                 android:textAlignment="center"
+                android:textColor="@color/course_text_secondary"
                 android:textSize="13sp" />
         </LinearLayout>
 
@@ -64,6 +68,8 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="@string/course_name"
+                android:textColor="@color/course_text_primary"
+                android:textDirection="anyRtl"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -74,6 +80,8 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="@string/course_instructor"
+                android:textColor="@color/course_text_secondary"
+                android:textDirection="anyRtl"
                 android:textSize="15sp" />
 
             <TextView
@@ -84,6 +92,8 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="40101 | 3 units | Capacity 30"
+                android:textColor="@color/brand_accent"
+                android:textDirection="ltr"
                 android:textSize="13sp" />
         </LinearLayout>
     </LinearLayout>

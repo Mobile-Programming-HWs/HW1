@@ -8,9 +8,10 @@
     android:layout_marginTop="6dp"
     android:layout_marginEnd="10dp"
     android:layout_marginBottom="6dp"
+    app:cardBackgroundColor="@color/course_card_surface"
     app:cardCornerRadius="8dp"
     app:cardElevation="3dp"
-    app:strokeColor="@color/lightgray"
+    app:strokeColor="@color/course_card_stroke"
     app:strokeWidth="1dp">
 
 
@@ -30,6 +31,8 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:text="@string/course_name"
+            android:textColor="@color/course_text_primary"
+            android:textDirection="anyRtl"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -41,6 +44,8 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="40101 | 3 units | Capacity 30"
+            android:textColor="@color/brand_accent"
+            android:textDirection="ltr"
             android:textSize="14sp" />
 
         <TextView
@@ -51,6 +56,8 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@string/course_instructor"
+            android:textColor="@color/course_text_secondary"
+            android:textDirection="anyRtl"
             android:textSize="16sp" />
 
         <LinearLayout
@@ -58,28 +65,28 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:baselineAligned="false"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/class_time"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_weight="1"
-                android:maxLines="2"
+                android:ellipsize="end"
+                android:maxLines="3"
                 android:text="Saturday | 09:00 to 10:30"
-                android:textSize="14sp" />
+                android:textColor="@color/course_text_secondary"
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/exam_time"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_weight="1"
+                android:layout_marginTop="4dp"
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:maxLines="3"
                 android:text="Exam: No exam time"
-                android:textSize="14sp" />
+                android:textColor="@color/course_text_secondary"
+                android:textSize="15sp" />
         </LinearLayout>
     </LinearLayout>
 

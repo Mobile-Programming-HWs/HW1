@@ -3,6 +3,7 @@
     <string name="course_name">Course Name</string>
     <string name="course_instructor">Course Instructor</string>
     <string name="course_search_hint">Search courses</string>
+    <string name="empty_weekly_chart">No selected courses yet.</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>

@@ -12,9 +12,14 @@ Android app for browsing Sharif course data and building a weekly class plan.
 - Rejects duplicate course numbers, class conflicts, and exam conflicts.
 - Saves selected courses locally so they are restored after the app restarts.
 
-## Screenshot
+## Screenshots
 
-![Course list](docs/screenshots/course-list.png)
+<p>
+  <img src="docs/screenshots/course-list.png" width="180" alt="Course list">
+  <img src="docs/screenshots/course-details.png" width="180" alt="Course details dialog">
+  <img src="docs/screenshots/drawer.png" width="180" alt="Navigation drawer">
+  <img src="docs/screenshots/weekly-chart.png" width="180" alt="Weekly chart">
+</p>
 
 ## Setup
 
@@ -54,5 +59,6 @@ adb devices
 - Selected course state: `SelectedCourse`
 - Selected course persistence: `SelectedCourseStorage` with SharedPreferences
 - Course display text and time parsing: `Course`, including one-meeting and two-meeting classes
+- The weekly chart shows an empty state until a course is selected.
 
 The app is local-only. It does not call a server and stores selected course ids in local SharedPreferences.
