@@ -21,7 +21,6 @@
             android:layout_height="wrap_content"
             android:text="@string/course_name"
             android:textAlignment="center"
-            android:textColor="@android:color/black"
             android:textSize="28sp"
             android:textStyle="bold" />
 
@@ -32,6 +31,15 @@
             android:text="@string/course_instructor"
             android:textAlignment="center"
             android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/class_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Unknown"
+            android:textAlignment="center"
+            android:textSize="18sp" />
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

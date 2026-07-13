@@ -70,9 +70,9 @@ public class CourseListFragment extends Fragment implements SelectListener {
         String message = String.format("%s" + '\n' +
                         "واحد: " + "%d" + '\n' +
                         "ظرفیت: " + "%d" + '\n' +
-                        "زمان برگزاری: " + "%s" + " تا " + "%s" + '\n' +
+                        "زمان برگزاری: " + "%s" + '\n' +
                         "زمان امتحان: " + "%s",
-                course.getInfo(), course.getUnits(), course.getCapacity(), course.getClassTimeBeginningText(), course.getClassTimeEndingText(), course.getExam_time());
+                course.getInfo(), course.getUnits(), course.getCapacity(), course.getClassTimeRangeText(), course.getExam_time());
         new AlertDialog.Builder(getContext(), R.style.AlertDialogCustom)
                 .setTitle(course.getName())
                 .setMessage(message)

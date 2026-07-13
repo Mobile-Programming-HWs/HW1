@@ -11,6 +11,7 @@ public class ItemViewHolder extends RecyclerView.ViewHolder {
 
     private final TextView name;
     private final TextView instructor;
+    private final TextView classTime;
     private final CardView cardView;
 
     public TextView getName() {
@@ -21,6 +22,10 @@ public class ItemViewHolder extends RecyclerView.ViewHolder {
         return instructor;
     }
 
+    public TextView getClassTime() {
+        return classTime;
+    }
+
     public CardView getCardView() {
         return cardView;
     }
@@ -29,6 +34,7 @@ public class ItemViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         name = (TextView) itemView.findViewById(R.id.name);
         instructor = (TextView) itemView.findViewById(R.id.instructor);
+        classTime = (TextView) itemView.findViewById(R.id.class_time);
         this.cardView = itemView.findViewById(R.id.card_view);
     }
 }

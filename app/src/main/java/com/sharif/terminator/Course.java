@@ -115,6 +115,13 @@ public class Course {
         return formatClassTime(classTimeEnding);
     }
 
+    public String getClassTimeRangeText() {
+        if (!hasClassTime()) {
+            return "Unknown";
+        }
+        return getClassTimeBeginningText() + " to " + getClassTimeEndingText();
+    }
+
     public int getClassFirstDate() {
         return classFirstDate;
     }
