@@ -1,9 +1,5 @@
 package com.sharif.terminator;
 
-import org.json.JSONArray;
-
-import java.io.File;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -20,32 +16,47 @@ public class SelectedCourse {
         Course secondCourse = Course.getClone(course);
         firstCourse.setDatePriority(1);
         secondCourse.setDatePriority(2);
+
+        if (hasCourse(course.getId())) {
+            return false;
+        }
         if (firstCourse.getClassDate() == -1) {
             selectedCourses.add(firstCourse);
             sortArray();
             return true;
         }
-        if (selectedCourses.size() == 0) {
-            selectedCourses.add(firstCourse);
-            selectedCourses.add(secondCourse);
-            sortArray();
-            return true;
+
+        if (hasTimeConflict(firstCourse) || hasTimeConflict(secondCourse)) {
+            return false;
         }
-        for (int i = 0; i < selectedCourses.size(); i++) {
-            Course index_course = selectedCourses.get(i);
-            if (firstCourse.getClassDate() == index_course.getClassDate()) {
-                if (firstCourse.getClassTimeBeginning() <= index_course.getClassTimeEnding() && firstCourse.getClassTimeBeginning() >= index_course.getClassTimeBeginning()) {
-                    return false;
-                }
-                if (firstCourse.getClassTimeEnding() >= index_course.getClassTimeBeginning() && firstCourse.getClassTimeEnding() <= index_course.getClassTimeEnding()) {
-                    return false;
-                }
-            }
-        }
+
         selectedCourses.add(firstCourse);
         selectedCourses.add(secondCourse);
         sortArray();
         return true;
+    }
+
+    private static boolean hasCourse(int id) {
+        for (Course selectedCourse : selectedCourses) {
+            if (selectedCourse.getId() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean hasTimeConflict(Course course) {
+        for (Course selectedCourse : selectedCourses) {
+            if (course.getClassDate() == selectedCourse.getClassDate() && timesOverlap(course, selectedCourse)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean timesOverlap(Course firstCourse, Course secondCourse) {
+        return firstCourse.getClassTimeBeginning() < secondCourse.getClassTimeEnding()
+                && firstCourse.getClassTimeEnding() > secondCourse.getClassTimeBeginning();
     }
 
     public static Comparator<Course> comparator = new Comparator<Course>() {
