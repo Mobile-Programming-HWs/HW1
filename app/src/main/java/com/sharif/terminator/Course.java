@@ -4,6 +4,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Locale;
+
 public class Course {
     private final String info;
     private final String course_id;
@@ -105,6 +107,14 @@ public class Course {
         return classTimeEnding;
     }
 
+    public String getClassTimeBeginningText() {
+        return formatClassTime(classTimeBeginning);
+    }
+
+    public String getClassTimeEndingText() {
+        return formatClassTime(classTimeEnding);
+    }
+
     public int getClassFirstDate() {
         return classFirstDate;
     }
@@ -130,6 +140,19 @@ public class Course {
             return classFirstDate;
         }
         return classSecondDate;
+    }
+
+    private static String formatClassTime(float classTime) {
+        if (classTime < 0) {
+            return "";
+        }
+        int hour = (int) classTime;
+        int minute = Math.round((classTime - hour) * 60);
+        if (minute == 60) {
+            hour += 1;
+            minute = 0;
+        }
+        return String.format(Locale.US, "%02d:%02d", hour, minute);
     }
     
     public static Course getClone(Course course) {

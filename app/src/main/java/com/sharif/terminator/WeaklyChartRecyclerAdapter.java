@@ -47,7 +47,7 @@ public class WeaklyChartRecyclerAdapter extends RecyclerView.Adapter<WeaklyChart
         Course course = selectedCoursesTimes.get(position);
         holder.weaklyChartName.setText(course.getName());
         holder.weaklyChartInstructor.setText(course.getInstructor());
-        holder.weaklyChartHour.setText(course.getClassTimeBeginning().toString() + " تا " + course.getClassTimeEnding().toString());
+        holder.weaklyChartHour.setText(course.getClassTimeBeginningText() + " تا " + course.getClassTimeEndingText());
         holder.weaklyChartDate.setText(dateCalculator(course.getClassDate()));
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +57,7 @@ public class WeaklyChartRecyclerAdapter extends RecyclerView.Adapter<WeaklyChart
                                 "ظرفیت: " + "%d" + '\n' +
                                 "زمان برگزاری: " + "%s" + " تا " + "%s" + '\n' +
                                 "زمان امتحان: " + "%s",
-                        course.getInfo(), course.getUnits(), course.getCapacity(), course.getClassTimeBeginning().toString(), course.getClassTimeEnding().toString(), course.getExam_time());
+                        course.getInfo(), course.getUnits(), course.getCapacity(), course.getClassTimeBeginningText(), course.getClassTimeEndingText(), course.getExam_time());
                 new AlertDialog.Builder(view.getContext(), R.style.AlertDialogCustom)
                         .setTitle(course.getName())
                         .setMessage(message)
