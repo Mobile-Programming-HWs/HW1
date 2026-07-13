@@ -12,6 +12,10 @@ Android app for browsing Sharif course data and building a weekly class plan.
 - Rejects duplicate course numbers, class conflicts, and exam conflicts.
 - Saves selected courses locally so they are restored after the app restarts.
 
+## Screenshot
+
+![Course list](docs/screenshots/course-list.png)
+
 ## Setup
 
 Install:
